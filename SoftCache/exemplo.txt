@@ -1,1 +1,3 @@
 cat leipzig1M.txt|tr '' '\n' | sort > entrada.txt
+
+(time java-algs4 FrequencyCounter 8 < leipzig300K.txt) >> saida.txt 2>&1
