@@ -24,6 +24,8 @@
  *
  ******************************************************************************/
 
+import edu.princeton.cs.algs4.*;
+
 /**
  *  The <tt>FrequencyCounter</tt> class provides a client for 
  *  reading in a sequence of words and printing a word (exceeding
@@ -51,7 +53,7 @@ public class FrequencyCounter {
     public static void main(String[] args) {
         int distinct = 0, words = 0;
         int minlen = Integer.parseInt(args[0]);
-        RedBlackBST<String, Integer> bst = new RedBlackBST<String, Integer>();
+        RedBlackBST0<String, Integer> bst = new RedBlackBST0<String, Integer>();
 
         // compute frequency counts
         while (!StdIn.isEmpty()) {
