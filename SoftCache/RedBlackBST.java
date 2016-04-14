@@ -27,6 +27,7 @@
  *
  ******************************************************************************/
 
+import edu.princeton.cs.algs4.*;
 import java.util.NoSuchElementException;
 
 /**
@@ -139,7 +140,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
      */
     public Value get(Key key) {
         if (key == null) throw new NullPointerException("argument to get() is null");
-        if (key.compareTo(last.key) == 0) return last.key;
+        if (last != null && key.compareTo(last.key) == 0) return last.val;
         return get(root, key);
     }
 
@@ -149,7 +150,10 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
             int cmp = key.compareTo(x.key);
             if      (cmp < 0) x = x.left;
             else if (cmp > 0) x = x.right;
-            else              return x.val;
+            else {
+                last = x;
+                return x.val;
+            }
         }
         return null;
     }
@@ -162,7 +166,6 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
      * @throws NullPointerException if <tt>key</tt> is <tt>null</tt>
      */
     public boolean contains(Key key) {
-        if (key.compareTo(last.key) == 0) return true;
         return get(key) != null;
     }
 
@@ -186,7 +189,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
             delete(key);
             return;
         }
-        if (key.compareTo(last.key) == 0) {
+        if (last != null && key.compareTo(last.key) == 0) {
             last.val = val;
             return;
         }
@@ -204,7 +207,10 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         int cmp = key.compareTo(h.key);
         if      (cmp < 0) h.left  = put(h.left,  key, val); 
         else if (cmp > 0) h.right = put(h.right, key, val); 
-        else              h.val   = val;
+        else {
+            h.val   = val;
+            last = h;
+        }
 
         // fix-up any right-leaning links
         if (isRed(h.right) && !isRed(h.left))      h = rotateLeft(h);
