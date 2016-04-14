@@ -1,0 +1,49 @@
+the 116512
+distinct = 144199
+words    = 2062726
+
+real	0m12.684s
+user	0m5.592s
+sys	0m0.420s
+the 116512
+distinct = 143561
+words    = 1748274
+
+real	0m4.912s
+user	0m5.568s
+sys	0m0.308s
+that 18797
+distinct = 139583
+words    = 1369960
+
+real	0m4.945s
+user	0m5.616s
+sys	0m0.280s
+would 5950
+distinct = 130567
+words    = 1061951
+
+real	0m4.773s
+user	0m5.484s
+sys	0m0.320s
+million 4000
+distinct = 114946
+words    = 818089
+
+real	0m4.245s
+user	0m4.840s
+sys	0m0.316s
+million 4000
+distinct = 95639
+words    = 620368
+
+real	0m3.856s
+user	0m4.416s
+sys	0m0.324s
+government 2549
+distinct = 74631
+words    = 423764
+
+real	0m3.590s
+user	0m4.112s
+sys	0m0.272s
