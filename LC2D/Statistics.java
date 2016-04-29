@@ -1,5 +1,6 @@
-public class Statistics 
-{
+import java.util.Arrays;
+
+public class Statistics {
     double[] data;
     int size;   
 
