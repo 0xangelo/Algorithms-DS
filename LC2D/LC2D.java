@@ -11,11 +11,11 @@
 
 import edu.princeton.cs.algs4.*;
 
-public class PC2D {
+public class LC2D {
 
     public static void main(String[] args) {
-        int N = StdIn.readInt();
         double d = StdIn.readDouble();
+        int T = StdIn.readInt();
         int G = (int) (Math.ceil(1.0 / d));    // rows and columns in grid
 
         // initialize data structure
