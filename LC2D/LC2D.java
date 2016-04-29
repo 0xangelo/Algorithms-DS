@@ -1,12 +1,10 @@
-/******************************************************************************
- *  Compilation:  javac Grid.java
- *  Execution:    java Grid N d
- *  Dependencies: Queue.java
- *  
- *  Generate N random Euclidean points in unit box (coordinates
- *  between 0 and 1) and print out all pairs that are at
- *  distance <= d.
- * 
+/*******************************************************************************
+ * Nome: Ângelo Gregório Lovatto
+ * Número USP: 9293435
+ *
+ * Compilação: javac-algs4 LC2D.java
+ * Execução:   java-algs4 LC2D d T S(opcional)
+ *
  ******************************************************************************/
 
 import edu.princeton.cs.algs4.*;

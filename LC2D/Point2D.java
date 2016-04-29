@@ -1,7 +1,9 @@
-/******************************************************************************
- *  Compilation:  javac Point2D.java
- *  Execution:    java Point2D x0 y0 N
- *  Dependencies: StdDraw.java StdRandom.java
+/*******************************************************************************
+ * Nome: Ângelo Gregório Lovatto
+ * Número USP: 9293435
+ *
+ * Compilação: javac-algs4 Point2D.java
+ * Execução:   java-algs4 Point2D x0 y0 N
  *
  *  Immutable point data type for points in the plane.
  *

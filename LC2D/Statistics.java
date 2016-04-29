@@ -1,3 +1,12 @@
+/*******************************************************************************
+ * Nome: Ângelo Gregório Lovatto
+ * Número USP: 9293435
+ *
+ * Compilação: javac-algs4 Statistics.java
+ *
+ ******************************************************************************/
+
+import edu.princeton.cs.algs4.*;
 import java.util.Arrays;
 
 public class Statistics {
