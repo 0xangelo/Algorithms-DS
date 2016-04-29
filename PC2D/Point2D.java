@@ -45,6 +45,7 @@ public final class Point2D implements Comparable<Point2D> {
 
     private final double x;    // x coordinate
     private final double y;    // y coordinate
+    public int index;
 
     /**
      * Initializes a new point (x, y).

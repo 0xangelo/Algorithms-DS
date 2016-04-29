@@ -11,9 +11,11 @@
 
 import edu.princeton.cs.algs4.*;
 
-public class Grid {
+public class PC2D {
 
-    public Queue<Point2D>[][] fillGrid(int N, double d) {
+    public static void main(String[] args) {
+        int N = StdIn.readInt();
+        double d = StdIn.readDouble();
         int G = (int) (Math.ceil(1.0 / d));    // rows and columns in grid
 
         // initialize data structure
@@ -22,22 +24,30 @@ public class Grid {
             for (int j = 0; j <= G+1; j++)
                 grid[i][j] = new Queue<Point2D>();
 
-        // generate random points and check if any previous point <= d
+        WeightedQuickUnionPathCompressionUF classes = new WeightedQuickUnionPathCompressionUF(N);
+
+        // read points and check if any previous point <= d
         for (int n = 0; n < N; n++) {
-            double x = StdRandom.uniform();
-            double y = StdRandom.uniform();
+            double x = StdIn.readDouble();
+            double y = StdIn.readDouble();
             Point2D p  = new Point2D(x, y);
+            p.index = n;
             int row = 1 + (int) (x * G);
             int col = 1 + (int) (y * G);
             for (int i = row-1; i <= row+1; i++) {
                 for (int j = col-1; j <= col+1; j++) {
                     for (Point2D q : grid[i][j])
                         if (p.distanceTo(q) <= d)
-                            StdOut.println(p + " <--> " + q);
+                            classes.union(p.index, q.index);
                 }
             }
             grid[row][col].enqueue(p);
         }
+
+        if (classes.count() == 1)
+            StdOut.println("Sim");
+        else
+            StdOut.println("Nao");
     }   
 }
  
