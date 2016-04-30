@@ -1,7 +1,6 @@
 /******************************************************************************
- *  Compilation:  javac WeightedQuickUnionPathCompressionUF.java
- *  Execution:  java WeightedQuickUnionPathCompressionUF < input.txt
- *  Dependencies: StdIn.java StdOut.java
+ *  Compilation:  javac-algs4 WeightedQuickUnionPathCompressionUF.java
+ *  Execution:    java-algs4 WeightedQuickUnionPathCompressionUF < input.txt
  *
  *  Weighted quick-union with path compression.
  *
