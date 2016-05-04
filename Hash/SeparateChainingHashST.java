@@ -1,7 +1,12 @@
+/*******************************************************************************
+ * Nome: Ângelo Gregório Lovatto
+ * Número USP: 9293435
+ *
+ * Compilação: javac-algs4 
+ * Execução:   java-algs4 
+ *
+ ******************************************************************************/
 /******************************************************************************
- *  Compilation:  javac SeparateChainingHashST.java
- *  Execution:    java SeparateChainingHashST
- *  Dependencies: StdIn.java StdOut.java
  *
  *  A symbol table implemented with a separate-chaining hash table.
  * 
@@ -35,6 +40,9 @@
  *  {@link LinearProbingHashST},
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  */
+
+import edu.princeton.cs.algs4.*;
+
 public class SeparateChainingHashST<Key, Value> {
     private static final int INIT_CAPACITY = 4;
 
