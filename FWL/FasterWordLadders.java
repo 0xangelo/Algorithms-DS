@@ -2,8 +2,8 @@
  * Nome: Ângelo Gregório Lovatto
  * Número USP: 9293435
  *
- * Compilação: javac-algs4 
- * Execução:   java-algs4 
+ * Compilação: javac-algs4 FasterWordLadders.java
+ * Execução:   java-algs4 FasterWordLadders arquivo.txt
  *
  ******************************************************************************/
 
@@ -30,9 +30,11 @@ public class FasterWordLadders {
         In in = new In(args[0]);
         IndexSET<String> words = new IndexSET<String>();
         String[] wordsA = in.readAllStrings();
-        for(String word : wordsA)
+        int W = 0;
+        for(String word : wordsA) {
             words.add(word);
-        
+            if (word.length() > W) W = word.length();
+        }
 
        /*******************************************************************
         *  Insert connections between neighboring words into graph.
@@ -45,19 +47,18 @@ public class FasterWordLadders {
         *
         *******************************************************************/
         Graph G = new Graph(words.size());
-        int W = wordsA[0].length();
+        
         /*****************************************************************/
         MSD.sort(wordsA);
         
         for (int i = 0; i < wordsA.length -1; i++) {
             String word1 = wordsA[i];
-            if (word1.length() > W) W = word1.length();
             for (int j = i +1; j < wordsA.length; j++) {
                 String word2 = wordsA[j];
                 if (isNeighbor(word1, word2)) {
                     G.addEdge(words.indexOf(word1), words.indexOf(word2));
                 }
-                else break;
+                else if (Math.abs(word2.length() - word1.length()) < 2) break;
             }
         }
         /*****************************************************************/        
