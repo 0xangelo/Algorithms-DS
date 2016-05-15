@@ -12,9 +12,10 @@ public class FasterWordLadders {
 
     // return true if two strings differ in exactly one letter
     public static boolean isNeighbor(String a, String b) {
-        assert  Math.abs(b.length() - a.length()) <= 1;
+        if (Math.abs(b.length() - a.length()) > 1) return false;
         int differ = 0;
-        for (int i = 0; i < a.length(); i++) {
+        if (a.length() != b.length()) differ++;
+        for (int i = 0; i < Math.min(a.length(), b.length()); i++) {
             if (a.charAt(i) != b.charAt(i)) differ++;
             if (differ > 1) return false;
         }
@@ -28,10 +29,10 @@ public class FasterWordLadders {
         *******************************************************************/
         In in = new In(args[0]);
         IndexSET<String> words = new IndexSET<String>();
-        while (!in.isEmpty()) {
-            String word = in.readString();
+        String[] wordsA = in.readAllStrings();
+        for(String word : wordsA)
             words.add(word);
-        }
+        
 
        /*******************************************************************
         *  Insert connections between neighboring words into graph.
@@ -44,23 +45,39 @@ public class FasterWordLadders {
         *
         *******************************************************************/
         Graph G = new Graph(words.size());
-        String[] wordsA = new String[words.size()];
-        int index = 0;
-        
-        for (String palavra : words.keys())
-            wordsA[index++] = palavra;
+        int W = wordsA[0].length();
+        /*****************************************************************/
         MSD.sort(wordsA);
         
-        for (index = 0; index < wordsA.length - 1; index++) {
-            String word1 = wordsA[index];
-            String word2 = wordsA[index+1];
-
-            if (word1.compareTo(word2) < 0 && isNeighbor(word1, word2)) {
-                G.addEdge(words.indexOf(word1), words.indexOf(word2));
+        for (int i = 0; i < wordsA.length -1; i++) {
+            String word1 = wordsA[i];
+            if (word1.length() > W) W = word1.length();
+            for (int j = i +1; j < wordsA.length; j++) {
+                String word2 = wordsA[j];
+                if (isNeighbor(word1, word2)) {
+                    G.addEdge(words.indexOf(word1), words.indexOf(word2));
+                }
+                else break;
             }
         }
+        /*****************************************************************/        
         
-
+        for (int k = 1; k < W; k++) {
+            shiftArray(wordsA);
+            MSD.sort(wordsA);
+        
+            for (int i = 0; i < wordsA.length -1; i++) {
+                String word1 = shiftLeft(wordsA[i], k);
+                for (int j = i +1; j < wordsA.length; j++) {
+                    String word2 = shiftLeft(wordsA[j], k);
+                    if (isNeighbor(word1, word2)) {
+                        G.addEdge(words.indexOf(word1), words.indexOf(word2));
+                    }
+                    else break;
+                }
+            }
+        }
+        StdOut.println("Finished Graph");
        /*******************************************************************
         *  Run breadth first search
         *******************************************************************/
@@ -79,19 +96,62 @@ public class FasterWordLadders {
             }
             else StdOut.println("NOT CONNECTED");
             StdOut.println();
+
+            /*
+            for (int v : G.adj(words.indexOf(from)))
+                StdOut.print(words.keyOf(v) + " ");
+            StdOut.println();
+            */
         }
     }
 
-    private static shiftRight(String a, int offset) {
-        String first = a.substring(a.length() - offset);
-        String last = a.substring(0, a.lenght() - offset);
-        return first.concat(last);
-     }
+    /***************************************************************************
+     * Auxiliary functions.
+     **************************************************************************/
+    
+    private static void shiftArray(String[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = shiftRight(array[i]);
+        }
+    }
 
-    private static shifLeft(String a, int offset) {
-        String first = a.substring(offset);
-        String last = a.substring(0, offset);
-        return first.concat(last);
+    private static String shiftLeft(String S, int offset) {
+        offset = offset % S.length();
+        for (int i = 0; i < offset; i++)
+            S = shiftLeft(S);
+        return S;
+    }
+    
+    private static String shiftLeft(String S) {
+        char[] arr = S.toCharArray();
+
+        char temp;
+        int len = S.length();
+               
+        temp = arr[0];
+        for(int j = 0; j < len-1; j++) {
+            arr[j] = arr[j+1];
+        }
+        arr[len-1] = temp;
+        
+        String X = new String(arr);
+        return X;
+    }    
+
+    private static String shiftRight(String S) {
+        char[] arr = S.toCharArray();
+
+        char temp;
+        int len = S.length();
+
+        temp = arr[len-1];
+        for(int j = len-1; j > 0; j--) {
+            arr[j] = arr[j-1];
+        }
+        arr[0] = temp;
+
+        String X = new String(arr);
+        return X;
     }
 
 }
