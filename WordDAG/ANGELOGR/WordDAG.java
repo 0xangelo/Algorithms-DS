@@ -11,8 +11,8 @@ import edu.princeton.cs.algs4.*;
 public class WordDAG {
     private  Digraph G;
     private  IndexSET<String> words;
-    private  int[] topologicalOrder;
-    private  int[] reversePostOrder;
+    private  int[] topologicalOrder; //guarda a posição de cada vértice na ordem topologica
+    private  int[] reversePostOrder; //quarda os vértices em ordem topológica
     
     public WordDAG(String[] strings) {
         G = new Digraph(strings.length);
