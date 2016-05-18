@@ -14,7 +14,7 @@ public class CoreVertices {
     public static void main(String[] args) {
         int N = StdIn.readInt();
         int M = StdIn.readInt();
-        Digraph G = new Graph(N);
+        Digraph G = new Digraph(N);
         
         for (int i = 0; i < M; i++) {
             int v1 = StdIn.readInt();
@@ -22,6 +22,7 @@ public class CoreVertices {
             G.addEdge(v1, v2);
         }
 
+        
     }
 
 }
