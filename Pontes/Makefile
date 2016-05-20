@@ -8,7 +8,7 @@ CLASSES = \
         Pontes.java \
 	Graph.java
 
-MAIN = FasterWordLadders
+MAIN = Pontes
 
 default: classes
 
@@ -18,4 +18,4 @@ clean:
 	$(RM) *.class
 
 run: classes
-	$(JVM) $(MAIN) words.utf-8.txt
+	$(JVM) $(MAIN)
