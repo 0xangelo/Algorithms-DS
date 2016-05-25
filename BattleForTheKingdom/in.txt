@@ -1,0 +1,19 @@
+4 6 2
+
+Fortress Port 6
+
+Village Port 5
+
+Castle Port 3
+
+Port Castle 4
+
+Castle Village 5
+
+Castle Fortress 2
+
+Village
+
+Castle
+
+Fortress
