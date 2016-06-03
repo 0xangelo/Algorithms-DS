@@ -263,6 +263,34 @@ public class TrieST<Value> {
         return null;
     }
 
+    /** 
+     * Creative Problem 5.2.8
+     */
+
+    public String floor (String x) {
+        String result = floor(root, x, new StringBuilder(), 0);
+        return result;
+    }
+
+    private String floor(Node s, String x, StringBuilder lower, int d) {
+        if (s == null) return null;
+        if (d == x.length()) return lower.toString();
+        char c = x.charAt(d);
+        while(
+        
+
+    public String ceil (String x) {
+
+    }
+
+    public int rank(String x) {
+
+    }
+
+    public String select(int i) {
+
+    }
+                    
     /**
      * Unit tests the <tt>TrieST</tt> data type.
      */
