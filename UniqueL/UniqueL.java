@@ -43,7 +43,7 @@ public class UniqueL {
         int L = Integer.parseInt(args[0]);
 
         if (args.length == 1) {
-            in = StdIn.readString();
+            in = StdIn.readLine();
             if (L > 0) StdOut.println(uniques(L));
             else       StdOut.println(highestL());
         }
