@@ -1,3 +1,12 @@
+/*******************************************************************************
+ * Nome: Ângelo Gregório Lovatto
+ * Número USP: 9293435
+ *
+ * Compilação: javac-algs4 KMP.java
+ * Execução:   java-algs4 KMP
+ *
+ * Exercício na linha 155.
+ ******************************************************************************/
 /******************************************************************************
  *  Compilation:  javac KMP.java
  *  Execution:    java KMP pattern text
@@ -7,23 +16,28 @@
  *  searches for the pattern in the input text using the
  *  KMP algorithm.
  *
- *  % java KMP abracadabra abacadabrabracabracadabrabrabracad
+ *  % java KMP
+ *  % abracadabra abacadabrabracabracadabrabrabracad
  *  text:    abacadabrabracabracadabrabrabracad 
  *  pattern:               abracadabra          
  *
- *  % java KMP rab abacadabrabracabracadabrabrabracad
+ *  % java KMP
+ *  % rab abacadabrabracabracadabrabrabracad
  *  text:    abacadabrabracabracadabrabrabracad 
  *  pattern:         rab
  *
- *  % java KMP bcara abacadabrabracabracadabrabrabracad
+ *  % java KMP
+ *  % bcara abacadabrabracabracadabrabrabracad
  *  text:    abacadabrabracabracadabrabrabracad 
  *  pattern:                                   bcara
  *
- *  % java KMP rabrabracad abacadabrabracabracadabrabrabracad 
+ *  % java KMP
+ *  % rabrabracad abacadabrabracabracadabrabrabracad 
  *  text:    abacadabrabracabracadabrabrabracad
  *  pattern:                        rabrabracad
  *
- *  % java KMP abacad abacadabrabracabracadabrabrabracad
+ *  % java KMP
+ *  % abacad abacadabrabracabracadabrabrabracad
  *  text:    abacadabrabracabracadabrabrabracad
  *  pattern: abacad
  *
@@ -43,6 +57,7 @@
  *  see <a href="http://algs4.cs.princeton.edu/53substring">Section 5.3</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  */
+import edu.princeton.cs.algs4.*;
 public class KMP {
     private final int R;       // the radix
     private int[][] dfa;       // the KMP automoton
@@ -137,35 +152,30 @@ public class KMP {
         return N;                    // not found
     }
 
-
+    public Iterable<Integer> findAll(String txt) {
+        Queue<Integer> queue = new Queue<Integer>();
+        int M = pat.length();
+        int N = txt.length();
+        int i, j;
+        for (i = 0, j = 0; i < N; i++) {
+            j = dfa[txt.charAt(i)][j%M];
+            if (j == M) queue.enqueue(i - M);
+        }
+        return queue;
+    }
+    
     /** 
      * Takes a pattern string and an input string as command-line arguments;
      * searches for the pattern string in the text string; and prints
      * the first occurrence of the pattern string in the text string.
      */
     public static void main(String[] args) {
-        String pat = args[0];
-        String txt = args[1];
-        char[] pattern = pat.toCharArray();
-        char[] text    = txt.toCharArray();
+        String pat = StdIn.readString();
+        String txt = StdIn.readAll();
 
         KMP kmp1 = new KMP(pat);
-        int offset1 = kmp1.search(txt);
-
-        KMP kmp2 = new KMP(pattern, 256);
-        int offset2 = kmp2.search(text);
-
-        // print results
-        StdOut.println("text:    " + txt);
-
-        StdOut.print("pattern: ");
-        for (int i = 0; i < offset1; i++)
-            StdOut.print(" ");
-        StdOut.println(pat);
-
-        StdOut.print("pattern: ");
-        for (int i = 0; i < offset2; i++)
-            StdOut.print(" ");
-        StdOut.println(pat);
+        for (int i : kmp1.findAll(txt))
+            StdOut.print(i + " ");
+        StdOut.println();
     }
 }

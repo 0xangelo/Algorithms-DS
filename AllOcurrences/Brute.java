@@ -1,3 +1,12 @@
+/*******************************************************************************
+ * Nome: Ângelo Gregório Lovatto
+ * Número USP: 9293435
+ *
+ * Compilação: javac-algs4 Brute.java
+ * Execução:   java-algs4 Brute
+ *
+ * Exercício na linha 49.
+ ******************************************************************************/
 /******************************************************************************
  *  Compilation:  javac Brute.java
  *  Execution:    java Brute pattern text
@@ -6,23 +15,28 @@
  *  Reads in two strings, the pattern and the input text, and
  *  searches for the pattern in the input text using brute force.
  *
- *  % java Brute abracadabra abacadabrabracabracadabrabrabracad
+ *  % java Brute 
+ *  % abracadabra abacadabrabracabracadabrabrabracad
  *  text:    abacadabrabracabracadabrabrabracad 
  *  pattern:               abracadabra          
  *
- *  % java Brute rab abacadabrabracabracadabrabrabracad
+ *  % java Brute 
+ *  % rab abacadabrabracabracadabrabrabracad
  *  text:    abacadabrabracabracadabrabrabracad 
  *  pattern:         rab                         
  * 
- *  % java Brute rabrabracad abacadabrabracabracadabrabrabracad
+ *  % java Brute 
+ *  % rabrabracad abacadabrabracabracadabrabrabracad
  *  text:    abacadabrabracabracadabrabrabracad
  *  pattern:                        rabrabracad
  *
- *  % java Brute bcara abacadabrabracabracadabrabrabracad
+ *  % java Brute
+ *  % bcara abacadabrabracabracadabrabrabracad
  *  text:    abacadabrabracabracadabrabrabracad 
  *  pattern:                                   bcara
  * 
- *  % java Brute abacad abacadabrabracabracadabrabrabracad
+ *  % java Brute 
+ *  % abacad abacadabrabracabracadabrabrabracad
  *  text:    abacadabrabracabracadabrabrabracad
  *  pattern: abacad
  *
@@ -44,9 +58,9 @@ public class Brute {
                 if (txt.charAt(i+j) != pat.charAt(j))
                     break;
             }
-            if (j == M) queue.enqueue(i);            // found at offset i
+            if (j == M) queue.enqueue(i-1);
         }
-        return queue;                            // not found
+        return queue;
     }
     
     // return offset of first match or N if no match

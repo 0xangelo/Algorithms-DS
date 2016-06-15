@@ -5,7 +5,8 @@ JVM = java-algs4
 	$(JC) $*.java
 
 CLASSES = \
-        Brute.java
+        Brute.java \
+	KMP.java
 
 MAIN = Brute
 
