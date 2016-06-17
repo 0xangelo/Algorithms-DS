@@ -5,7 +5,9 @@
  * Compilação: javac-algs4 KMP.java
  * Execução:   java-algs4 KMP
  *
- * Exercício na linha 155.
+ * Exercício na linha 155. O construtor foi modificado para possibilitar a
+ * procura de strings cujos caracteres finais sejam prefixo para ela mesma.
+ *
  ******************************************************************************/
 /******************************************************************************
  *  Compilation:  javac KMP.java
@@ -76,14 +78,17 @@ public class KMP {
 
         // build DFA from pattern
         int M = pat.length();
-        dfa = new int[R][M]; 
-        dfa[pat.charAt(0)][0] = 1; 
-        for (int X = 0, j = 1; j < M; j++) {
+        dfa = new int[R][M+1]; 
+        dfa[pat.charAt(0)][0] = 1;
+        int X, j;
+        for (X = 0, j = 1; j < M; j++) {
             for (int c = 0; c < R; c++) 
                 dfa[c][j] = dfa[c][X];     // Copy mismatch cases. 
             dfa[pat.charAt(j)][j] = j+1;   // Set match case. 
             X = dfa[pat.charAt(j)][X];     // Update restart state. 
-        } 
+        }
+        for (int c = 0; c < R; c++) 
+            dfa[c][j] = dfa[c][X];
     } 
 
     /**
@@ -158,8 +163,9 @@ public class KMP {
         int N = txt.length();
         int i, j;
         for (i = 0, j = 0; i < N; i++) {
-            j = dfa[txt.charAt(i)][j%M];
-            if (j == M) queue.enqueue(i - M);
+            j = dfa[txt.charAt(i)][j%(M+1)];
+            if (j == M) 
+                queue.enqueue(i - M);
         }
         return queue;
     }
