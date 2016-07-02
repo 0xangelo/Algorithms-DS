@@ -55,7 +55,7 @@ public class LinkFinder {
               }
           }
           else {
-              if (saida.contains("\'")) continue;
+              \\ if (saida.contains("\'")) continue;
               StdOut.println(saida);
           }
       }
