@@ -40,7 +40,7 @@ public class LinkFinder {
       *  && for intersection of two character classes
       *  + for one or more occurrences
       *************************************************************/
-      String regexp = "((href=\")|(http))[[\\S]&&[^\"]&&[^\']]+";
+      String regexp = "((href=\")|(http))[[\\S]&&[^\"]+";
       Pattern pattern = Pattern.compile(regexp);
       Matcher matcher = pattern.matcher(input);
       String prefix = args[0].substring(0, args[0].length()-1);
@@ -48,15 +48,16 @@ public class LinkFinder {
       // find and print all matches
       while (matcher.find()) {
           String saida = matcher.group();
-          if (saida.endsWith("\'")) continue;
           if (saida.startsWith("href=\"")) {
               saida = saida.substring(6);
               if (!saida.startsWith("http")) {
                   StdOut.println(prefix + saida);
               }
           }
-          else
+          else {
+              if (saida.contains("\'")) continue;
               StdOut.println(saida);
+          }
       }
       
    }
