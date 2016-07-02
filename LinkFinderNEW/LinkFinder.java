@@ -50,12 +50,13 @@ public class LinkFinder {
           String saida = matcher.group();
           if (saida.startsWith("href=\"")) {
               saida = saida.substring(6);
-              if (!saida.startsWith("http")) {
+              if (!saida.startsWith("http"))
                   StdOut.println(prefix + saida);
-              }
+               else
+                  StdOut.println(saida);
           }
           else {
-              // if (saida.contains("\'")) continue;
+              if (saida.contains("\'")) continue;
               StdOut.println(saida);
           }
       }
