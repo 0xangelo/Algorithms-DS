@@ -14,7 +14,7 @@ default: classes
 classes: $(CLASSES:.java=.class)
 
 clean:
-	git $(RM) *.class
+	$(RM) *.class
 
 run: classes
 	$(JVM) $(MAIN) http://www.ime.usp.br/ > saida.txt
@@ -22,3 +22,5 @@ run: classes
 update:
 	git add *
 	git commit -m "update"
+	git push
+	
