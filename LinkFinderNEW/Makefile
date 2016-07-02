@@ -14,7 +14,7 @@ default: classes
 classes: $(CLASSES:.java=.class)
 
 clean:
-	$(RM) *.class
+	git $(RM) *.class
 
 run: classes
 	$(JVM) $(MAIN) http://www.ime.usp.br/ > saida.txt
