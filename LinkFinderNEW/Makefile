@@ -18,3 +18,7 @@ clean:
 
 run: classes
 	$(JVM) $(MAIN) http://www.ime.usp.br/ > saida.txt
+
+update:
+	git add *
+	git commit -m "update"
