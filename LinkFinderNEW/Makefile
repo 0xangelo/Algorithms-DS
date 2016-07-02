@@ -5,8 +5,7 @@ JVM = java-algs4
 	$(JC) $*.java
 
 CLASSES = \
-        LinkFinder.java \
-	KMP.java
+        LinkFinder.java
 
 MAIN = LinkFinder
 
