@@ -14,7 +14,7 @@ default: classes
 classes: $(CLASSES:.java=.class)
 
 clean:
-  $(RM) *.class
+	$(RM) *.class
 
 run: classes
-  $(JVM) $(MAIN) http://www.ime.usp.br/
+	$(JVM) $(MAIN) http://www.ime.usp.br/
