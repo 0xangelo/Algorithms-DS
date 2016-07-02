@@ -48,6 +48,7 @@ public class LinkFinder {
       // find and print all matches
       while (matcher.find()) {
           String saida = matcher.group();
+          if (saida.endsWith("\'")) continue;
           if (saida.startsWith("href=\"")) {
               saida = saida.substring(6);
               if (!saida.startsWith("http")) {
