@@ -17,4 +17,4 @@ clean:
 	$(RM) *.class
 
 run: classes
-	$(JVM) $(MAIN) http://www.ime.usp.br/
+	$(JVM) $(MAIN) http://www.ime.usp.br/ > saida.txt
