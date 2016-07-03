@@ -30,37 +30,71 @@ import edu.princeton.cs.algs4.*;
 public class LinkFinder { 
 
 
-   public static void main(String[] args) { 
-      In in = new In(args[0]);
-      String input = in.readAll();
-
-     /*************************************************************
-      *  \\S for not whitespace characters
-      *  ^\" for all characters except "     (add ? to list...)
-      *  && for intersection of two character classes
-      *  + for one or more occurrences
-      *************************************************************/
-      String regexp = "((href=\")|(http))[[\\S]&&[^\"]]+";
-      Pattern pattern = Pattern.compile(regexp);
-      Matcher matcher = pattern.matcher(input);
-      String prefix = args[0].substring(0, args[0].length()-1);
-      
-      // find and print all matches
-      while (matcher.find()) {
-          String saida = matcher.group();
-          if (saida.startsWith("href=\"")) {
-              saida = saida.substring(6);
-              if (!saida.startsWith("http"))
-                  StdOut.println(prefix + saida);
-               else
-                  StdOut.println(saida);
-          }
-          else {
-              if (!saida.contains(".")) continue;
-              StdOut.println(saida);
-          }
-      }
-      
-   }
-
+    public static void main(String[] args) { 
+        if (args.length == 1) {
+            In in = new In(args[0]);
+            String input = in.readAll();
+    
+            /*************************************************************
+            *  \\S for not whitespace characters
+            *  ^\" for all characters except "     (add ? to list...)
+            *  && for intersection of two character classes
+            *  + for one or more occurrences
+            *************************************************************/
+            String regexp = "((href=\")|(http))[[\\S]&&[^\"]]+";
+            Pattern pattern = Pattern.compile(regexp);
+            Matcher matcher = pattern.matcher(input);
+            String prefix = args[0].substring(0, args[0].length()-1);
+          
+            // find and print all matches
+            while (matcher.find()) {
+                String saida = matcher.group();
+                if (saida.startsWith("href=\"")) {
+                    saida = saida.substring(6);
+                    if (!saida.startsWith("http"))
+                        StdOut.println(prefix + saida);
+                    else
+                        StdOut.println(saida);
+                }
+                else {
+                    if (!saida.contains(".")) continue;
+                        StdOut.println(saida);
+                }
+            }
+        }
+        else {
+            In in = new In(args[1]);
+            RedBlackBST<String, Integer> tree = new RedBlackBST<String, Integer>();
+            String input = in.readAll();
+            
+            /*************************************************************
+            *  \\S for not whitespace characters
+            *  ^\" for all characters except "     (add ? to list...)
+            *  && for intersection of two character classes
+            *  + for one or more occurrences
+            *************************************************************/
+            String regexp = "((href=\")|(http))[[\\S]&&[^\"]]+";
+            Pattern pattern = Pattern.compile(regexp);
+            Matcher matcher = pattern.matcher(input);
+            String prefix = args[1].substring(0, args[1].length()-1);
+            
+            // find and print all matches
+            while (matcher.find()) {
+                String saida = matcher.group();
+                if (saida.startsWith("href=\"")) {
+                    saida = saida.substring(6);
+                    if (!saida.startsWith("http"))
+                        tree.put(prefix + saida, 1);
+                    else
+                        tree.put(saida, 1);
+                }
+                else {
+                    if (!saida.contains(".")) continue;
+                    tree.put(saida, 1);
+                }
+            }
+            for (String out : tree.keys())
+                StdOut.println(out);
+        }
+    }
 }
